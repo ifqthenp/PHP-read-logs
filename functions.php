@@ -13,13 +13,9 @@ function getStats($path)
 {
     $summary = array();
 
-    if (!is_file($path)) // check if file
+    if (!is_file($path) && !is_readable($path))
     {
-        echo '<p>' . 'Not a file' . '</p>';
-    }
-    elseif (!is_readable($path)) // check if readable
-    {
-        echo '<p>' . 'File not readable' . '</p>';
+        echo '<p>' . 'Error. Not a file or not readable' . '</p>';
     }
     else
     {
