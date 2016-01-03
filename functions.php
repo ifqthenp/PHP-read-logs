@@ -80,12 +80,13 @@ function getStats($path)
 /**
  * This function prints the table with stats returned from getStats() function
  * @param array $datArray
+ * @return string $table
  */
-function outputTable($datArray)
+function table($datArray)
 {
     /*
      * Array of table headers (content of <th> tags)
-    */
+     */
     $tableHeaders = array(
         'Month',
         'Total file requests',
@@ -95,32 +96,34 @@ function outputTable($datArray)
         'Unique 404 requests'
     );
 
-    echo '<table border="1" width="100%">';
-    echo '<tr>';
+    $table = '';
+    $table .= '<table border="1" width="100%">';
+    $table .= '<tr>';
     foreach ($tableHeaders as $header)
     {
-        echo '<th>' . $header . '</th>';
+        $table .= '<th>' . $header . '</th>';
     }
-    echo '</tr>';
+    $table .= '</tr>';
 
     foreach ($datArray as $key => $value)
     {
         $month = pathinfo($value['month']); // extract log file name from the path
-        echo '<tr>';
-        echo '<td>' . ucfirst($month['filename']) . '</td>'; // Capitalise month's first letter
-        echo '<td>' . $value['totalReq'] . '</td>';
-        echo '<td>' . $value['articlesReq'] . '</td>';
-        echo '<td>' . $value['bandwidth'] . '</td>';
-        echo '<td>' . $value['total404'] . '</td>';
+        $table .= '<tr>';
+        $table .= '<td>' . ucfirst($month['filename']) . '</td>'; // Capitalise month's first letter
+        $table .= '<td>' . $value['totalReq'] . '</td>';
+        $table .= '<td>' . $value['articlesReq'] . '</td>';
+        $table .= '<td>' . $value['bandwidth'] . '</td>';
+        $table .= '<td>' . $value['total404'] . '</td>';
 
-        echo '<td>';
-        // echo sub-array with unique 404 requests
+        $table .= '<td>';
+        // sub-array with unique 404 requests
         foreach ($value['unique404'] as $item)
         {
-            echo "$item<br>";
+            $table .= "$item<br>";
         }
-        echo '</td>';
-        echo '</tr>';
+        $table .= '</td>';
+        $table .= '</tr>';
     }
-    echo '</table>';
+    $table .= '</table>';
+    return $table;
 }
