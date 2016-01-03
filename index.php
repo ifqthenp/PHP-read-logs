@@ -13,8 +13,13 @@ foreach (glob('logs/*.log') as $path)
 }
 
 /*
- * Send data and headers to the outputTable() function and print final table with stats
+ * Send data from $monthlyData array to table() function
  */
-outputTable($monthlyData);
+$printTable = table($monthlyData);
+
+/*
+ * Print final table
+ */
+echo $printTable;
 
 include 'includes/footer.php';
