@@ -80,13 +80,24 @@ function getStats($path)
 /**
  * This function prints the table with stats returned from getStats() function
  * @param array $datArray
- * @param array $headers
  */
-function outputTable($datArray, $headers)
+function outputTable($datArray)
 {
+    /*
+     * Array of table headers (content of <th> tags)
+    */
+    $tableHeaders = array(
+        'Month',
+        'Total file requests',
+        'Articles files requests',
+        'Total bandwidth KB',
+        'Total 404 requests',
+        'Unique 404 requests'
+    );
+
     echo '<table border="1" width="100%">';
     echo '<tr>';
-    foreach ($headers as $header)
+    foreach ($tableHeaders as $header)
     {
         echo '<th>' . $header . '</th>';
     }
