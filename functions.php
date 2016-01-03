@@ -79,8 +79,8 @@ function getStats($path)
 
 /**
  * This function prints the table with stats returned from getStats() function
- * @param $datArray
- * @param $headers
+ * @param array $datArray
+ * @param array $headers
  */
 function outputTable($datArray, $headers)
 {
