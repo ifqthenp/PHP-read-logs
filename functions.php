@@ -6,7 +6,7 @@
  * c) counts total bandwidth consumed by the file requests
  * d) counts number of 404 errors
  * e) files that produced 404 error gathered into array and all duplicates removed using PHP array_unique() function.
- * @param $path
+ * @param string $path path provided by glob function
  * @return array
  */
 function getStats($path)
