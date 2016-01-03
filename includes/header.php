@@ -4,7 +4,7 @@
 
 <html lang="en">
 <head>
-    <title>PHP read logs</title>
+    <title>PHP read server logs</title>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
 </head>
 <body>
