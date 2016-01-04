@@ -108,17 +108,15 @@ function table($datArray)
 
     foreach ($datArray as $key => $value)
     {
-        $month = pathinfo($value['month']); // extract log file name from the path
-        $table .= '<tr>';
-        $table .= '<td>' . ucfirst($month['filename']) . '</td>'; // Capitalise month's first letter
-        $table .= '<td>' . $value['totalReq'] . '</td>';
-        $table .= '<td>' . $value['articlesReq'] . '</td>';
-        $table .= '<td>' . $value['bandwidth'] . '</td>';
-        $table .= '<td>' . $value['total404'] . '</td>';
-
-        $table .= '<td>';
-        // sub-array with unique 404 requests
-        foreach ($value['unique404'] as $item)
+        if (array_key_exists('notReadable', $value))
+        {
+            $month = pathinfo($value['month']); // extract log file name from the path
+            $table .= '<tr>';
+            $table .= '<td>' . ucfirst($month['filename']) . '</td>';
+            $table .= '<td colspan="5">' . $value['notReadable'] . '</td>';
+            $table .= '</tr>';
+        }
+        else
         {
             $table .= "$item<br>";
         }
