@@ -13,11 +13,7 @@ function getStats($path)
 {
     $summary = array();
 
-    if (!is_file($path) && !is_readable($path))
-    {
-        echo '<p>' . 'Error. Not a file or not readable' . '</p>';
-    }
-    else
+    if (is_file($path) && is_readable($path))
     {
         // open file in reading mode
         $filesToRead = fopen($path, 'r');
@@ -73,8 +69,13 @@ function getStats($path)
         {
             $summary['unique404'][] = $value;
         }
-        return $summary;
     }
+    else
+    {
+        $summary['month'] = $path;
+        $summary['notReadable'] = 'not readable';
+    }
+    return $summary;
 }
 
 /**
